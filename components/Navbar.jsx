@@ -26,21 +26,18 @@ const Navbar = () => {
   <div className="flex justify-between items-center w-full px-4 py-2">
   {/* Left side: Logo + My Posts/Home */}
   <div className="flex items-center gap-4">
+   <Link href="/">
     <Image
       src="/assets/icons/artificial-intelligence.png"
-      width={30}
-      height={30}
+      width={40}
+      height={40}
       alt="Logo"
-    />
-    {!mypost ? (
+    /></Link>
+    {
       <Link className="black_btn" href="/user-prompt" onClick={() => setmypost(true)}>
         My Posts
       </Link>
-    ) : (
-      <Link className="black_btn" href="/" onClick={() => setmypost(false)}>
-        Home
-      </Link>
-    )}
+    }
   </div>
 
   {/* Right side: Create Post | Sign Out | Profile Image */}
@@ -63,7 +60,16 @@ const Navbar = () => {
 
       </>
     ) : (
-      <div className="ml-auto">
+      <div className="flex justify-between items-center w-full px-4 py-2">
+          <div className="flex items-center gap-4">
+            <Link href="/" >
+    <Image
+      src="/assets/icons/artificial-intelligence.png"
+      width={40}
+      height={40}
+      alt="Logo"
+    /></Link>
+    </div>
         {providers &&
           Object.values(providers).map((provider) => (
             <button
