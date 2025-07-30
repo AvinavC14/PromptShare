@@ -107,7 +107,7 @@ const PromptCard = ({ post, edit, handleDelete, onLikeToggle }) => {
       <div
         className="copy_btn absolute bottom-2 right-2 "
         onClick={(e) => {
-          e.stopPropagation(); // ⛔ prevent modal from opening
+          e.stopPropagation(); //  prevent modal from opening
 
           handleCopy();
         }}
@@ -122,7 +122,7 @@ const PromptCard = ({ post, edit, handleDelete, onLikeToggle }) => {
         />
       </div>
       {/* like button */}
-      {!edit && (
+      {session?.user && !edit && (
         <div
           className="like_btn absolute top-2 right-2 "
           onClick={(e) => {
