@@ -6,7 +6,6 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [providers, setproviders] = useState(null);
-  const [mypost, setmypost] = useState(false);
   useEffect(() => {
     const setUpproviders = async () => {
       const response = await getProviders();
@@ -87,7 +86,18 @@ const Navbar = () => {
 
   {/* Mobile Navigation */}
 <div className="sm:hidden flex justify-between items-center w-full px-4">
-  {/* Left: User session or Sign In button */}
+
+   <div >
+    <Link href="/" >
+    <Image
+      src="/assets/icons/artificial-intelligence.png"
+      width={24}
+      height={24}
+      alt="Logo"
+    />
+    </Link>
+  </div>
+  
   {session?.user ? (
     <div className="relative">
       <Image
@@ -99,8 +109,8 @@ const Navbar = () => {
         onClick={() => setdropdown(!dropdown)}
       />
       {dropdown && (
-        <div className="dropdown absolute top-12 left-0 bg-white p-4 shadow-md rounded-md z-50 flex flex-col items-start text-left">
-          {!mypost ? (
+        <div className="dropdown absolute top-12 right-0 bg-white p-4 shadow-md rounded-md z-50 flex flex-col items-start text-right">
+          {
             <Link
               className="dropdown_link text-left w-full"
               href="/user-prompt"
@@ -111,18 +121,7 @@ const Navbar = () => {
             >
               My Posts
             </Link>
-          ) : (
-            <Link
-              className="dropdown_link text-left w-full"
-              href="/"
-              onClick={() => {
-                setdropdown(false);
-                setmypost(false);
-              }}
-            >
-              Home
-            </Link>
-          )}
+          }
           <Link
             href="/create-prompt"
             className="dropdown_link text-left w-full"
@@ -144,7 +143,7 @@ const Navbar = () => {
       )}
     </div>
   ) : (
-    <div className="ml-auto">
+    <div className="ml-auto flex items-center gap-4">
       {providers &&
         Object.values(providers).map((provider) => (
           <button
@@ -159,15 +158,7 @@ const Navbar = () => {
     </div>
   )}
 
-  {/* Right: Logo */}
-  <div>
-    <Image
-      src="/assets/icons/artificial-intelligence.png"
-      width={24}
-      height={24}
-      alt="Logo"
-    />
-  </div>
+ 
 </div>
 
 </nav>
